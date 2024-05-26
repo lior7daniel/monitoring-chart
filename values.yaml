@@ -1,0 +1,22 @@
+kube-prometheus-stack:
+  grafana:
+    service:
+      type: NodePort
+      nodePort: 32000
+    persistence:
+      enabled: true
+      accessModes:
+        - ReadWriteOnce
+      size: 2Gi
+
+  prometheus:
+    prometheusSpec:
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 2Gi
+
